@@ -6,15 +6,27 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:39:21 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/13 18:05:31 by joterret         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:39:44 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	main()
+#define texte "texte.txt"
+int	main(void)
 {
-	char *text = "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+	int		fd;
+	char	*line;
+	int		i;
 
-	get_next_line(text);
+	i = 0;
+	fd = open(texte, O_RDWR);
+	while (i < 100)
+	{
+		line = get_next_line(fd);
+		printf("Impression de la ligne: %d\n", i);
+		printf("%s\n", line);
+		i++;
+	}
+	return (0);
 }
