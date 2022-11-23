@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:39:21 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/22 19:39:44 by joterret         ###   ########.fr       */
+/*   Updated: 2022/11/23 21:40:24 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	main(void)
 {
 	int		fd;
 	char	*line;
-	int		i;
+	int i;
+
+
+	fd = open(texte, O_RDWR);
 
 	i = 0;
-	fd = open(texte, O_RDWR);
-	while (i < 100)
+	while (line != 0)
 	{
 		line = get_next_line(fd);
 		printf("Impression de la ligne: %d\n", i);
