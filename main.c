@@ -6,19 +6,18 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:39:21 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/23 21:40:24 by joterret         ###   ########.fr       */
+/*   Updated: 2022/11/24 21:44:11 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 #define texte "texte.txt"
-int	main(void)
+int	main(void)//TODO: ADD SOMEHINH
 {
 	int		fd;
 	char	*line;
 	int i;
-
 
 	fd = open(texte, O_RDWR);
 
@@ -26,7 +25,6 @@ int	main(void)
 	while (line != 0)
 	{
 		line = get_next_line(fd);
-		printf("Impression de la ligne: %d\n", i);
 		printf("%s\n", line);
 		i++;
 	}

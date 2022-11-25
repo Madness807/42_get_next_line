@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:08:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/23 21:45:43 by joterret         ###   ########.fr       */
+/*   Updated: 2022/11/25 04:36:32 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@
 char	*get_next_line(int fd);
 
 //Prototype de fonction suplementaire-------------------------------------------
-int		retlen(char *str);
+size_t		retlen(char *str);
 size_t	ft_strlen(const char *str);
 int		find_n(char *str);
-void	*ft_memcpy(void *dest, const void *source, size_t size);
+int		find_zero(char *str);
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
 
 //Buffer size
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 15
+# define BUFFER_SIZE 100
 #endif
