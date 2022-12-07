@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 04:01:24 by jo                #+#    #+#             */
-/*   Updated: 2022/11/25 05:08:08 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:39:19 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,29 @@
 
 char	*get_next_line(int fd)
 {		
-	char			strreaded[BUFFER_SIZE + 1];
-	char			*retstr;
-	static char		*strtmp;
-	ssize_t			nbr_of_byte_read;
-	int				i;
+	static char str_saved[BUFFER_SIZE + 1] = "";
+	char		str_tmp[BUFFER_SIZE + 1];
+	char		*str_file = NULL;
+	ssize_t		nb_readed_bytes;
 
-	i = 0;
-	if (!fd)
-		return (0);
-	nbr_of_byte_read = read(fd, strreaded, BUFFER_SIZE);
-	strreaded[BUFFER_SIZE] = '\0';
-	if (nbr_of_byte_read <= 0)
-		return (0);
-		
-	
-
-	while (find_n(strreaded) != 1)
-		strtmp = 
+	//NOTE -  - 1: Parcourir le fichier (fd)
+	//TODO - 2: Copie le fichier dans la string temporaire
+	//TODO - 3: Parcour la string temporaire jusqua trouver un /n et la retourne en temp que ligne
 
 
 
 
 
+	while (/*TODO - TROUVER LA CONDITION DE LA BOUCLE*/)
+	{
+		nb_readed_bytes = read(fd, str_tmp, BUFFER_SIZE);
+		str_tmp[nb_readed_bytes] = '\0';
 
+		if (str_file == NULL)//FIXME - corrriger cette merde
+			str_file = ft_strjoin("", str_tmp);
+		else
+			str_file = ft_strjoin()
 
-
-
-
-
-	
-	while (strreaded[i] != 0)
-	{	
-		
-		if (find_n(strreaded) == 1)
-		{	
-			retstr = malloc(sizeof(char) *(retlen(strreaded) + 1));
-			ft_strlcpy(retstr, strreaded, retlen(strreaded));
-			retstr[retlen(strreaded)] = '\0';
-			return (retstr);
-			free(retstr);
-		}
-		i++;
 	}
 	return (0);
 }

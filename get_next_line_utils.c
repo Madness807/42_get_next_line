@@ -6,13 +6,14 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/25 04:18:39 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:41:56 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+/*NOTE - RETOURNE LA LONGUEUR DE LA STRING/*
+size_t	gnl_strlen(const char *str)
 {
 	size_t	i;
 
@@ -25,8 +26,8 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-
-size_t		retlen(char *str)
+/*NOTE - RETOURN LA TAILLE DE LA STRING A LA RENCONTRE DUN ZERO OU DUN /N */
+size_t	gnl_retlen(char *str)
 {
 	int	i;
 
@@ -35,14 +36,14 @@ size_t		retlen(char *str)
 		i++;
 	return (i + 1);
 }
-
-int		find_n(char *str)
+/*NOTE - CHERCHE SI UN RETOUR A LA LIGNE EST PRESENT*/
+int		gnl_find_newline(char *str)
 {
 	int	i;
 	int	len;
 
 	i = 0;
-	len = ft_strlen(str);
+	len = gnl_strlen(str);
 	while (i < len)
 	{
 		if (str[i] == '\n')
@@ -51,14 +52,30 @@ int		find_n(char *str)
 	}
 	return (0);
 }
-
-int		find_zero(char *str)
+/*NOTE - CHERCHE UN CARACTERE DANS LA STRING*/
+char	*gnl_strchr(const char *str, int c)
 {
 	int	i;
 	int	len;
 
 	i = 0;
-	len = ft_strlen(str);
+	len = gnl_strlen(str)+1;
+	while (i < len)
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i++;
+	}
+	return (0);
+}
+/*NOTE - CHERCHE LA PRESENCE DUN 0 DANS LA STRING */
+int		gnl_find_zero(char *str)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = gnl_strlen(str);
 	while (i < len)
 	{
 		if (str[i] == 0)
@@ -67,13 +84,13 @@ int		find_zero(char *str)
 	}
 	return (0);
 }
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+//NOTE - COPIE LA STRING 
+size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
 
 	if (!dstsize)
-		return (ft_strlen(src));
+		return (gnl_strlen(src));
 	i = 0;
 	while (src[i] != 0 && i < dstsize - 1)
 	{
@@ -81,11 +98,10 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 		i++;
 	}
 	dest[i] = '\0';
-	return (ft_strlen(src));
+	return (gnl_strlen(src));
 }
-
-
-char	*ft_strjoin(char const *s1, char const *s2)
+//NOTE - RASSEMBLE DEUX STRING EN UNE
+char	*gnl_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
@@ -94,7 +110,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = -1;
 	j = -1;
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = gnl_strlen(s1) + gnl_strlen(s2);
 	if (s1 == NULL || s2 == NULL)
 		return (0);
 	s3 = malloc(sizeof (*s3) * len + 1);

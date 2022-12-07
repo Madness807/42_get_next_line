@@ -6,18 +6,18 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:39:21 by joterret          #+#    #+#             */
-/*   Updated: 2022/11/24 21:44:11 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/07 09:44:21 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 #define texte "texte.txt"
-int	main(void)//TODO: ADD SOMEHINH
+int	main(void)
 {
 	int		fd;
 	char	*line;
-	int i;
+	int		i;
 
 	fd = open(texte, O_RDWR);
 
