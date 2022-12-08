@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jo <jo@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/08 13:01:00 by jo               ###   ########.fr       */
+/*   Updated: 2022/12/08 17:59:00 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
 
 //NOTE - Rasseemble deux string ensemble
 char	*gnl_strjoin(char const *s1, char const *s2)
-
 {
 	int		i;
 	int		j;
@@ -85,26 +84,4 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	}
 	s3[i] = '\0';
 	return (s3);
-}
-
-//NOTE - ????
-size_t	gnl_strlcat(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	j;
-
-	if (size == 0)
-		return (gnl_strlen(src));
-	i = 0;
-	j = 0;
-	while (dst[i] != 0 && i < size)
-		i++;
-	while (src[j] != 0 && (i + j + 1) < size)
-	{
-			dst[i + j] = src[j];
-			j++;
-	}
-	if (i + j < size)
-		dst[i + j] = '\0';
-	return (i + gnl_strlen(src));
 }

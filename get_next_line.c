@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jo <jo@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 04:01:24 by jo                #+#    #+#             */
-/*   Updated: 2022/12/08 13:22:18 by jo               ###   ########.fr       */
+/*   Updated: 2022/12/08 18:32:19 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-//NOTE - apres un tour de magie retourne la string
 char	*get_next_line(int fd)
 {	
 	char 		*line;
 	static char	*stock;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	if (fd < 0)
+		return (0);
+
 	stock = gnl_read_stock(fd, stock);
 	if (!stock)
 		return (NULL);
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 	stock = gnl_update_stock(stock);
 	return (line);
 }
-//NOTE - retourne la ligne avant un retour a la ligne 
+
 char 	*gnl_getline(char *stock)
 {
 	size_t	retlen;
@@ -36,13 +36,17 @@ char 	*gnl_getline(char *stock)
 	retlen = 0;
 	if (!stock[retlen])
 		return (NULL);
-	while (stock[retlen] != '\n' || stock[retlen])
+		
+	while (stock[retlen] && stock[retlen] != '\n')
 		retlen++;
+		
 	line = malloc((retlen + 1) * sizeof(char));
+	
 	if (!line)
 		return (NULL);
 	
-	//REVIEW - c est pas mon code----------------------------------------------------------------------
+	retlen = 0;
+	//--------------------------------------------------------
 	while (stock[retlen] && stock[retlen] != '\n')
 	{
 		line[retlen] = stock[retlen];
@@ -54,41 +58,40 @@ char 	*gnl_getline(char *stock)
 		retlen++;
 	}
 	line[retlen] = '\0';
-	//REVIEW - c est pas mon code -----------------------------------------------------------------------
+	//-----------------------------------------------------------
 
 	return (line);
 }
-//NOTE - lit le stock temporaire a inclure dans la variable static 
+
 char	*gnl_read_stock(int fd, char *stock)
 {
 	char *buf;
-	ssize_t	nbr_bytes_readed;
+	ssize_t	bytes_read;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
 		return (NULL);
-	nbr_bytes_readed = 1;
+	bytes_read = 1;
 
-	//REVIEW - c est pas mon code
-	while (!gnl_strchr(stock, '\n') && nbr_bytes_readed)
+	stock = malloc((BUFFER_SIZE + 1)  * sizeof(char));//REVIEW - tcheker
+
+	while (!gnl_strchr(stock, '\n') && bytes_read)
 	{
-		nbr_bytes_readed = read(fd, buf, BUFFER_SIZE);
-		if (nbr_bytes_readed == -1)
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read == -1)
 		{
 			free(buf);
 			return (NULL);
 		}
-		buf[nbr_bytes_readed] = '\0';
+		buf[bytes_read] = '\0';
 		stock = gnl_strjoin(stock, buf);
 	}
 	free(buf);
 	return (stock);
-	//REVIEW - c est pas mon code
 }
-//NOTE - 
+
 char	*gnl_update_stock(char *stock)
 {
-	//REVIEW - c est pas mon code------------------------------------------------------------
 	int		i;
 	int		j;
 	char	*new_stock;
@@ -96,12 +99,15 @@ char	*gnl_update_stock(char *stock)
 	i = 0;
 	while (stock[i] && stock[i] != '\n')
 		i++;
+		
 	if (!stock[i])
 	{
 		free(stock);
 		return (NULL);
 	}
+	
 	new_stock = (char *)malloc((gnl_strlen(stock) - i + 1) * sizeof(char));
+	
 	if (!stock)
 		return (NULL);
 	i++;
@@ -113,5 +119,4 @@ char	*gnl_update_stock(char *stock)
 	new_stock[j] = '\0';
 	free(stock);
 	return (new_stock);
-	//REVIEW - c est pas mon code -------------------------------------------------------------
 }

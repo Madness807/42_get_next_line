@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jo <jo@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:08:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/08 12:58:42 by jo               ###   ########.fr       */
+/*   Updated: 2022/12/08 17:58:43 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*gnl_read_stock(int fd, char *stock);
 //NOTE - Utils
 size_t	gnl_strlen(const char *str);
 size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize);
-size_t	gnl_strlcat(char *dst, const char *src, size_t dstsize);
 char	*gnl_strchr(const char *str, int c);
 char	*gnl_strjoin(char const *s1, char const *s2);
 
