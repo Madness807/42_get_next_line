@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jo <jo@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/07 11:41:56 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:01:00 by jo               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*NOTE - RETOURNE LA LONGUEUR DE LA STRING/*
+//NOTE - Retourne la longueur de la string
 size_t	gnl_strlen(const char *str)
 {
 	size_t	i;
@@ -21,38 +21,11 @@ size_t	gnl_strlen(const char *str)
 	if (!str)
 		return (0);
 	while (str[i] != 0)
-	{
 		i++;
-	}
 	return (i);
 }
-/*NOTE - RETOURN LA TAILLE DE LA STRING A LA RENCONTRE DUN ZERO OU DUN /N */
-size_t	gnl_retlen(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i] != '0' && str[i] != '\n')
-		i++;
-	return (i + 1);
-}
-/*NOTE - CHERCHE SI UN RETOUR A LA LIGNE EST PRESENT*/
-int		gnl_find_newline(char *str)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = gnl_strlen(str);
-	while (i < len)
-	{
-		if (str[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-/*NOTE - CHERCHE UN CARACTERE DANS LA STRING*/
+//NOTE - This returns a pointer to the first occurrence of the character c in the string str, or NULL if the character is not found. 
 char	*gnl_strchr(const char *str, int c)
 {
 	int	i;
@@ -68,23 +41,8 @@ char	*gnl_strchr(const char *str, int c)
 	}
 	return (0);
 }
-/*NOTE - CHERCHE LA PRESENCE DUN 0 DANS LA STRING */
-int		gnl_find_zero(char *str)
-{
-	int	i;
-	int	len;
 
-	i = 0;
-	len = gnl_strlen(str);
-	while (i < len)
-	{
-		if (str[i] == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-//NOTE - COPIE LA STRING 
+//NOTE - Copie une string d'une source a une destination et retourne ca longueur
 size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -92,7 +50,7 @@ size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
 	if (!dstsize)
 		return (gnl_strlen(src));
 	i = 0;
-	while (src[i] != 0 && i < dstsize - 1)
+	while (src[i] != 0 && i < dstsize)
 	{
 		dest[i] = src[i];
 		i++;
@@ -100,8 +58,10 @@ size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
 	dest[i] = '\0';
 	return (gnl_strlen(src));
 }
-//NOTE - RASSEMBLE DEUX STRING EN UNE
+
+//NOTE - Rasseemble deux string ensemble
 char	*gnl_strjoin(char const *s1, char const *s2)
+
 {
 	int		i;
 	int		j;
@@ -125,4 +85,26 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	}
 	s3[i] = '\0';
 	return (s3);
+}
+
+//NOTE - ????
+size_t	gnl_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	j;
+
+	if (size == 0)
+		return (gnl_strlen(src));
+	i = 0;
+	j = 0;
+	while (dst[i] != 0 && i < size)
+		i++;
+	while (src[j] != 0 && (i + j + 1) < size)
+	{
+			dst[i + j] = src[j];
+			j++;
+	}
+	if (i + j < size)
+		dst[i + j] = '\0';
+	return (i + gnl_strlen(src));
 }
