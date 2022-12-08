@@ -6,13 +6,12 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/08 17:59:00 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:45:38 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-//NOTE - Retourne la longueur de la string
 size_t	gnl_strlen(const char *str)
 {
 	size_t	i;
@@ -25,7 +24,6 @@ size_t	gnl_strlen(const char *str)
 	return (i);
 }
 
-//NOTE - This returns a pointer to the first occurrence of the character c in the string str, or NULL if the character is not found. 
 char	*gnl_strchr(const char *str, int c)
 {
 	int	i;
@@ -42,24 +40,6 @@ char	*gnl_strchr(const char *str, int c)
 	return (0);
 }
 
-//NOTE - Copie une string d'une source a une destination et retourne ca longueur
-size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	if (!dstsize)
-		return (gnl_strlen(src));
-	i = 0;
-	while (src[i] != 0 && i < dstsize)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (gnl_strlen(src));
-}
-
-//NOTE - Rasseemble deux string ensemble
 char	*gnl_strjoin(char const *s1, char const *s2)
 {
 	int		i;

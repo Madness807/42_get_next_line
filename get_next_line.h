@@ -6,12 +6,12 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:08:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/08 17:58:43 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:45:06 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GNL_H
-# define FT_GNL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 //NOTE - Includes 
 # include <unistd.h>
@@ -26,7 +26,7 @@
 
 //NOTE - Buffer size
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+#  define BUFFER_SIZE 100
 # endif
 
 //NOTE - Fonction principal
@@ -36,7 +36,6 @@ char	*gnl_update_stock(char *stock);
 char	*gnl_read_stock(int fd, char *stock);
 //NOTE - Utils
 size_t	gnl_strlen(const char *str);
-size_t	gnl_strlcpy(char *dest, const char *src, size_t dstsize);
 char	*gnl_strchr(const char *str, int c);
 char	*gnl_strjoin(char const *s1, char const *s2);
 
