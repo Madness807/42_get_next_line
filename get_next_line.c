@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 04:01:24 by jo                #+#    #+#             */
-/*   Updated: 2022/12/08 19:52:22 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/09 19:40:26 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,21 @@ char	*gnl_read_stock(int fd, char *stock)
 	char		*buf;
 	ssize_t		bytes_read;
 
-	buf = malloc((BUFFER_SIZE + 2) * sizeof(char));
+	buf = malloc((BUFFER_SIZE + 2) * sizeof(char));//FIXME -  +1 ou 2
 	if (!buf)
 		return (NULL);
 	bytes_read = 0;
-	//stock = malloc((BUFFER_SIZE + 2) * sizeof(char));
-	while (!gnl_strchr(stock, '\n') && bytes_read)
+	if (!stock)
+		stock = malloc((1000) * sizeof(char));//FIXME -  +1 ou 2
+	if (!stock)
+		return (NULL);
+	while (gnl_strchr(stock, '\n') != 1)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (bytes_read == -1)
+		if (bytes_read <= 0)
 		{
 			free(buf);
-			return (NULL);
+			return (stock);
 		}
 		buf[bytes_read] = '\0';
 		stock = gnl_strjoin(stock, buf);

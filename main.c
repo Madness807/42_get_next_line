@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-#define texte "texte.txt"
+#define texte "./files/41_no_nl"
 int	main(void)
 {
 	int		fd;
@@ -8,7 +8,7 @@ int	main(void)
 
 	fd = open(texte, O_RDWR);
 
-	line = get_next_line(fd);
+	line = "";
 	while (line)
 	{
 		line = get_next_line(fd);

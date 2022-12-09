@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/08 19:45:38 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/09 19:32:55 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ size_t	gnl_strlen(const char *str)
 	return (i);
 }
 
-char	*gnl_strchr(const char *str, int c)
+int	gnl_strchr(const char *str, int c)
 {
 	int	i;
 	int	len;
 
 	i = 0;
 	len = gnl_strlen(str)+1;
-	while (i < len)
+	while (i < len && str[i])
 	{
 		if (str[i] == (char)c)
-			return ((char *)&str[i]);
+			return (1);
 		i++;
 	}
 	return (0);
