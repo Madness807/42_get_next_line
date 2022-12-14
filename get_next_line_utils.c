@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:31:15 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/14 02:18:08 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:41:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	int		j;
 	int		len;
 	char	*s3;
-	/*
-	if (!s1)
-	{
-		s1 = malloc(sizeof (char) * 1);
-		s1[0] = '\0';
-	}*/
-	
+
 	i = -1;
 	j = -1;
 	len = gnl_strlen(s1) + gnl_strlen(s2);
@@ -71,4 +65,29 @@ char	*gnl_strjoin(char *s1, char *s2)
 	s3[i] = '\0';
 	free(s1);
 	return (s3);
+}
+
+void	*gnl_calloc(size_t number, size_t len)
+{
+	void	*ptr;
+
+	ptr = malloc(number * len);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, number * len);
+	return (ptr);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *) s;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 }

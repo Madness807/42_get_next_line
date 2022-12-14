@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:08:18 by joterret          #+#    #+#             */
-/*   Updated: 2022/12/14 00:19:38 by joterret         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:00:57 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ char	*gnl_read_stock(int fd, char *stock);
 size_t	gnl_strlen(const char *str);
 int		gnl_strchr(char *str, int c);
 char	*gnl_strjoin(char *s1, char *s2);
+void	*gnl_calloc(size_t number, size_t len);
+void	ft_bzero(void *s, size_t n);
 
 #endif
