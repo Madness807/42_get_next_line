@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-#define texte "./files/41_no_nl"
+#define texte "./empty.txt"
 int	main(void)
 {
 	int		fd;
@@ -8,8 +8,10 @@ int	main(void)
 
 	fd = open(texte, O_RDWR);
 
-	line = "";
-	while (line)
+
+
+	// line = "";
+	for (int i = 0; i < 10; i++)
 	{
 		line = get_next_line(fd);
 		printf("%s\n", line);
